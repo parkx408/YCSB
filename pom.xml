@@ -107,6 +107,7 @@ LICENSE file.
     <module>couchbase</module>
     <module>distribution</module>
     <module>dynamodb</module>
+    <module>dynamodbv2</module>
     <module>elasticsearch</module>
     <module>gemfire</module>
     <module>googledatastore</module>
