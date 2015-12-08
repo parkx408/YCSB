@@ -28,8 +28,6 @@ import com.amazonaws.services.dynamodbv2.model.DeleteItemRequest;
 import com.amazonaws.services.dynamodbv2.model.DeleteItemResult;
 import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
 import com.amazonaws.services.dynamodbv2.model.GetItemResult;
-import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
-import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.dynamodbv2.model.PutItemRequest;
 import com.amazonaws.services.dynamodbv2.model.PutItemResult;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
@@ -55,7 +53,7 @@ import java.util.Vector;
  * DynamoDB v1.10.34 client for YCSB
  */
 
-public class DynamoDBClientV2 extends DB {
+public class DynamoDBClient2 extends DB {
 
     /**
      * Defines the primary key type used in this particular DB instance.
@@ -83,12 +81,12 @@ public class DynamoDBClientV2 extends DB {
     private boolean consistentRead = false;
     private String endpoint = "http://dynamodb.us-east-1.amazonaws.com";
     private int maxConnects = 50;
-    private static Logger logger = Logger.getLogger(DynamoDBClientV2.class);
+    private static Logger logger = Logger.getLogger(DynamoDBClient2.class);
     private static final Status CLIENT_ERROR = new Status("CLIENT_ERROR",
         "An error occurred on the client.");
     private static final String DEFAULT_HASH_KEY_VALUE = "YCSB_0";
 
-    public DynamoDBClientV2() {}
+    public DynamoDBClient2() {}
 
     /**
      * Initialize any state for this DB. Called once per DB instance; there is
@@ -160,7 +158,7 @@ public class DynamoDBClientV2 extends DB {
             dynamoDB = new AmazonDynamoDBClient(credentials,cconfig);
             dynamoDB.setEndpoint(this.endpoint);
             primaryKeyName = primaryKey;
-            logger.info("dynamodb connection created with " + this.endpoint + " " + dynamoDB.listTables().getTableNames());
+            logger.info("dynamodb connection created with " + this.endpoint);
         } catch (Exception e1) {
             String errMsg = "DynamoDBClient.init(): Could not initialize DynamoDB client: " + e1.getMessage();
             logger.error(errMsg);
